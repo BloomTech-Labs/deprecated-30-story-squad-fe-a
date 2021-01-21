@@ -42,8 +42,8 @@ const VotingForm = props => {
           {/*
             Change values to submission ids
           */}
-          <Radio className="left-radio" value={props.SubmissionIDs[0]} />
-          <Radio className="right-radio" value={props.SubmissionIDs[1]} />
+          <Radio className="left-radio" value={1} />
+          <Radio className="right-radio" value={2} />
         </Radio.Group>
       </Form.Item>
       <Form.Item>
