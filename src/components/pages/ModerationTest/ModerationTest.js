@@ -8,6 +8,7 @@ import {
   setClusters,
   setFaceoffs,
   setResults,
+  setTotalPoints,
 } from '../../../api/moderation';
 
 import { reset } from '../../../api/index';
@@ -88,6 +89,13 @@ const ModerationTest = props => {
     push('/child/dashboard');
   };
 
+  // Moderator can begin child user's total points calculation
+  const totalPoints = () => {
+    setTotalPoints().then(res => {
+      console.log(res);
+    });
+  };
+
   return (
     <Layout className="moderation-page">
       <PageHeader>
@@ -123,6 +131,9 @@ const ModerationTest = props => {
                 </Button>
                 <Button type="default" onClick={results}>
                   Generate Results
+                </Button>
+                <Button type="default" onClick={totalPoints}>
+                  Generate Total Points
                 </Button>
               </Form.Item>
             </Form.Item>

@@ -61,3 +61,14 @@ export const setResults = () => {
     return { err };
   }
 };
+
+export const setTotalPoints = () => {
+  try {
+    return apiAuthPut('/mod/leaderboard-calculation').then(res => {
+      return res;
+    });
+  } catch (err) {
+    console.log(err);
+    return { err };
+  }
+};
