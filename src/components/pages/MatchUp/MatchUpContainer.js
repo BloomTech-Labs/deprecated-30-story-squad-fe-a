@@ -9,6 +9,7 @@ import {
   getChildSquad,
   getFaceoffsForMatchup,
   getFaceoffsForVoting,
+  getTotalNumOfSquads,
 } from '../../../api/index';
 
 function MatchUpContainer({ LoadingComponent, ...props }) {
@@ -38,6 +39,11 @@ function MatchUpContainer({ LoadingComponent, ...props }) {
   }, [memoAuthService]);
 
   useEffect(() => {
+    // get users' squad, from that determine which squad the user will be voting on
+    let numOfSquads = 0;
+    getTotalNumOfSquads(authState, props.child.cohortId).then(totalSquads => {
+      numOfSquads = totalSquads.length;
+    });
     getChildSquad(authState, props.child.id).then(squad => {
       getFaceoffsForMatchup(authState, squad.ID, props.child.id).then(
         allFaceoffs => {
@@ -45,16 +51,12 @@ function MatchUpContainer({ LoadingComponent, ...props }) {
           props.setSquadFaceoffs(allFaceoffs);
         }
       );
-
-      if (squad.ID % 2 === 0) {
-        getFaceoffsForVoting(authState, squad.ID - 1).then(faceoffs => {
+      // All squads will vote on the next squad, except the last squad votes on the first squad
+      getFaceoffsForVoting(authState, (squad.ID % numOfSquads) + 1).then(
+        faceoffs => {
           props.setVotes(faceoffs);
-        });
-      } else {
-        getFaceoffsForVoting(authState, squad.ID + 1).then(faceoffs => {
-          props.setVotes(faceoffs);
-        });
-      }
+        }
+      );
     });
 
     // eslint-disable-next-line
