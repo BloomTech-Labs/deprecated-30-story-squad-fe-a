@@ -42,7 +42,16 @@ function VotingPageContainer({ LoadingComponent, ...props }) {
       props.faceoffs[0].SquadID,
       props.child.memberId
     ).then(res => {
+      console.log(
+        'THIS SHOULD BE ARRAY OF 4 FACEOFFS TO BE VOTED ON***',
+        props.votes
+      );
+      console.log('THIS SHOULD BE Id of first index***', props.votes[1]['ID']);
+      console.log('THIS IS RES FROM GETGAMEVOTES', res);
       if (res.length === 0) {
+        // if (props.votes.TotalVotes)
+        // this is what 0 index of props.votes = [{(faceoffID) ID: 15, , Points: 180, SquadID: 4, Submission1: {ID/Name/Img/Avatar/Pages}, Submission2: {ID/Name/Img/Avatar/Pages}, SubmissionID1: 13,  SubmissionID2: 15, Type: "WRITING", Winner: null}]
+
         // if user hasn't voted at all
         setVotes(props.votes[3]); // get 4th faceoff to vote on
       } else if (res.length === 1) {
@@ -58,6 +67,25 @@ function VotingPageContainer({ LoadingComponent, ...props }) {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  /**
+   * It appears that GenerateResults link determines if there is a winner in each faceoff...so currently we can't test ifWinner case (while in the voting phase) in order to save that 3rd non-decisive vote
+   * Squads | Faceoffs fkSquads | Votes fkFaceoffs
+   *
+   * Maybe we need to add a field "TotalVotes" to Faceoffs table
+   * get: all faceoffs for this squadID (props.votes has this data already)
+   * Need to find total votes cast per faceoffID!!! pass in SquadID and MemberID to a DB request (**We need to join a table to get FaceoffIDs from the SquadID passed in**) to Votes table, query: select "FaceoffID", "Votes", where "Votes" < 3 && where memberID is not in "MemberID". Then on the Front End iterate through the response checking for the smallest vote length then return the faceoff that corresponds. Then iterate through props.votes to find which object has faceoffID === "ID" and return that faceoffIndex. Render props.votes[faceoffIndex]
+   *
+   * THIS IS RES FROM GETGAMEVOTES
+   *   (3) [{…}, {…}, {…}]
+   *       0: {FaceoffID: 14, Vote: 1}
+   *       1: {FaceoffID: 15, Vote: 2}
+   *       2: {FaceoffID: 16, Vote: 2}
+   *
+   *   (getGameVotes is already returning the votes cast to the UI for the current user...maybe this is helpful)
+   *   if true, then render that faceoff to be voted on
+   *   else, there is an error
+   */
 
   // useEffect(() => {
   //   // this fn renders each faceoff (within 1 squad) (via a special iteration pattern) to ensure user does not vote twice on same faceoff. A user will vote 3 times total
