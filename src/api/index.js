@@ -257,6 +257,28 @@ const getChildTeam = async (authState, childId) => {
 /**
  *
  * @param {Object} authState necessary for API functionality
+ * @param {number} cohortId id of the cohort that child belongs to
+ * @returns {array} of objects containing squad numbers that were created for this cohort
+ */
+const getTotalNumOfSquads = async (authState, cohortId) => {
+  try {
+    return apiAuthGet(
+      `/game/squads?cohortId=${cohortId}`,
+      getAuthHeader(authState)
+    ).then(response => {
+      return response.data;
+    });
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return [error];
+    });
+  }
+};
+
+/**
+ *
+ * @param {Object} authState necessary for API functionality
  * @param {Object} teamPoints these are the points assigned for each of the submissions
  * @returns {Array} with id reference to the vote
  */
@@ -311,6 +333,7 @@ const getFaceoffsForMatchup = async (authState, squadId, childId = null) => {
       `/game/faceoffs?squadId=${squadId}&childId=${childId}`,
       getAuthHeader(authState)
     ).then(response => {
+      console.log('this is getFaceoffsForMatchup', response.data);
       return response.data;
     });
   } catch (error) {
@@ -333,6 +356,7 @@ const getFaceoffsForVoting = async (authState, squadId) => {
       `/game/faceoffs?squadId=${squadId}`,
       getAuthHeader(authState)
     ).then(response => {
+      console.log('from getFaceoffsForVoting', response.data);
       return response.data;
     });
   } catch (error) {
@@ -370,7 +394,11 @@ const postVotes = async (authState, voteInfo) => {
  * @param {Object} authState necessary for API functionality
  * @param {number} squadId id of the squad that the child is in
  * @param {number} memberId id of the team the child is on
- * @returns {Array} containing objects of the results of the faceoff
+ * @returns {Array} containing objects of the results of the faceoff (Vote = SubmissionID)
+ * {FaceoffID: 2, Vote: 4}
+ * {FaceoffID: 4, Vote: 4}
+ * {FaceoffID: 3, Vote: 3}
+ * FaceoffID: 1 is missing???
  */
 const getGameVotes = async (authState, squadId, memberId) => {
   try {
@@ -378,6 +406,7 @@ const getGameVotes = async (authState, squadId, memberId) => {
       `/game/votes?squadId=${squadId}&memberId=${memberId}`,
       getAuthHeader(authState)
     ).then(response => {
+      console.log('this is getGameVotes', response.data);
       return response.data;
     });
   } catch (error) {
@@ -442,5 +471,6 @@ export {
   postVotes,
   getGameVotes,
   getChildGraph,
+  getTotalNumOfSquads,
   reset,
 };
