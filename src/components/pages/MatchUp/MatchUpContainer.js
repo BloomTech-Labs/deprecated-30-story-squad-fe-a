@@ -39,7 +39,7 @@ function MatchUpContainer({ LoadingComponent, ...props }) {
   }, [memoAuthService]);
 
   useEffect(() => {
-    // get users' squad, from that determine which squad the user will be voting on
+    // get user's squad, from that determine which squad the user will be voting on
     let numOfSquads = 0;
     getTotalNumOfSquads(authState, props.child.cohortId).then(totalSquads => {
       numOfSquads = totalSquads.length;
