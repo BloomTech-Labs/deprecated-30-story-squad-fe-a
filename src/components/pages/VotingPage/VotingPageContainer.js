@@ -34,26 +34,38 @@ function VotingPageContainer({ LoadingComponent, ...props }) {
     return () => (isSubscribed = false);
   }, [memoAuthService]);
 
-  // We planned on changing this code below, but didn't have time. We wanted to loop through each faceoffID (within this squad)
-  // and find the smallest TotalVote count, then let the user vote on that one. Also make sure that this user (memberID)
-  // has not voted on this particular faceoff already.
+  // render the faceoffs to be voted on
   useEffect(() => {
     getGameVotes(
       authState,
       props.faceoffs[0].SquadID,
       props.child.memberId
     ).then(res => {
-      if (res.length === 0) {
-        // if user hasn't voted at all
-        setVotes(props.votes[3]); // get 4th faceoff to vote on
-      } else if (res.length === 1) {
-        // if user has voted once,
-        setVotes(props.votes[2]); // get the 3rd faceoff to vote on
-      } else if (res.length === 2) {
-        // if user has voted 2 times,
-        setVotes(props.votes[1]); // get the 2nd faceoff to vote on
+      // determine if user has votes available
+      let votesAvailable = false;
+      if (res.length < 3) {
+        votesAvailable = true;
+      }
+      // keep track of which faceoffIDs the user has voted on
+      let faceoffsVotedOn = {};
+      res.forEach(item => {
+        faceoffsVotedOn[item.FaceoffID] = 1;
+      });
+      // find the smallest vote count, save that corresponding index as leastVotesIndex, but only if the user has not voted on that faceoffID already
+      let leastVotes = 3;
+      let leastVotesIndex = 0;
+      for (let i = 0; i < 4; i++) {
+        if (
+          props.votes[i].TotalVotes < leastVotes &&
+          !(props.votes[i].ID in faceoffsVotedOn)
+        ) {
+          leastVotes = props.votes[i].TotalVotes;
+          leastVotesIndex = i;
+        }
+      }
+      if (votesAvailable) {
+        setVotes(props.votes[leastVotesIndex]);
       } else {
-        // all 3 votes are used, so push to dashboard, which unfortunately skips 1st faceoff
         push('/child/dashboard');
       }
     });
