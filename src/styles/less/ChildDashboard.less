@@ -81,6 +81,7 @@
     justify-content: center;
     align-items: center;
     background: @bright-sun;
+    cursor: pointer;
   }
 
   .adventure-passport img {
@@ -111,3 +112,11 @@
     font-size: 3.7rem;
   }
 }
+.adventure-passport:hover{
+  background-color: lighten(@bright-sun, 10%);
+  img{
+    filter: brightness(200%);
+  }
+
+}
+

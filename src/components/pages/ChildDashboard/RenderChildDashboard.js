@@ -8,6 +8,7 @@ import { modalInstructions } from '../../../utils/helpers';
 import adventure_passport from '../../../assets/images/child_dashboard_images/adventure_passport.svg';
 import change_your_avatar from '../../../assets/images/child_dashboard_images/change_your_avatar.svg';
 import trophy_room from '../../../assets/images/child_dashboard_images/trophy_room.svg';
+import { PointShare } from '../PointShare';
 
 const RenderChildDashboard = props => {
   const { push } = useHistory();
@@ -27,6 +28,9 @@ const RenderChildDashboard = props => {
 
   const handleModerationPage = event => {
     push('/moderation');
+  };
+  const handleAdventurePassport = e => {
+    push('/adventurepassport');
   };
 
   return (
@@ -67,7 +71,7 @@ const RenderChildDashboard = props => {
               className="child-dash-img"
               src={adventure_passport}
               alt="Adventure Passport Button"
-              onClick={handleJoinSquad}
+              onClick={handleAdventurePassport}
             />
           </Col>
           <Col className="trophy-room" xs={24} sm={13}>
