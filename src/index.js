@@ -39,6 +39,7 @@ import { ParentSettings } from './components/pages/FamilySettings';
 import { StoryPrompt } from './components/pages/StoryPrompt';
 import { WritingSub } from './components/pages/WritingSub';
 import LoginCallbackLoader from './components/common/LoginCallbackLoader';
+import ChangeAvatar from './components/pages/ChangeAvatar';
 
 // Gameification Components
 import { JoinTheSquad } from './components/pages/JoinTheSquad';
@@ -48,6 +49,7 @@ import { VotingPage } from './components/pages/VotingPage';
 
 // Note: for demo purposes ONLY
 import ModerationTest from './components/pages/ModerationTest/ModerationTest';
+//import { ChangeAvatar } from './components/pages/ChangeAvatar';
 
 ReactDOM.render(
   //
@@ -157,15 +159,20 @@ function App() {
         <SecureRoute
           path="/child/match-up"
           exact
-          component={() => (
-            <MatchUp LoadingComponent={ChildLoadingComponent} />
-          )}  
+          component={() => <MatchUp LoadingComponent={ChildLoadingComponent} />}
         />
         <SecureRoute
           path="/child/squad-vote"
           exact
           component={() => (
             <VotingPage LoadingComponent={ChildLoadingComponent} />
+          )}
+        />
+        <SecureRoute
+          path="/child/changeavatar"
+          exact
+          component={() => (
+            <ChangeAvatar LoadingComponent={ChildLoadingComponent} />
           )}
         />
         <Route exact path="/moderation" component={ModerationTest} />

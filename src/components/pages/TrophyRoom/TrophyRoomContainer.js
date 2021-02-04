@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { connect } from 'react-redux';
-import RenderChangeAvatar from './RenderChangeAvatar';
+import RenderTrophyRoom from './RenderTrophyRoom';
 
-const ChangeAvatarContainer = ({ LoadingComponent, ...props }) => {
+const TrophyRoomContainer = ({ LoadingComponent, ...props }) => {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
   // eslint-disable-next-line
@@ -34,7 +34,7 @@ const ChangeAvatarContainer = ({ LoadingComponent, ...props }) => {
         <LoadingComponent message="Loading..." />
       )}
       {authState.isAuthenticated && userInfo && (
-        <RenderChangeAvatar
+        <RenderTrophyRoom
           {...props}
           userInfo={userInfo}
           authService={authService}
@@ -50,4 +50,4 @@ export default connect(
     tasks: state.tasks,
   }),
   {}
-)(ChangeAvatarContainer);
+)(TrophyRoomContainer);
