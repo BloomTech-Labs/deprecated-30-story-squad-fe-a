@@ -39,7 +39,7 @@ import { ParentSettings } from './components/pages/FamilySettings';
 import { StoryPrompt } from './components/pages/StoryPrompt';
 import { WritingSub } from './components/pages/WritingSub';
 import LoginCallbackLoader from './components/common/LoginCallbackLoader';
-import ChangeAvatar from './components/pages/ChangeAvatar';
+import { ChangeAvatar } from './components/pages/ChangeAvatar';
 
 // Gameification Components
 import { JoinTheSquad } from './components/pages/JoinTheSquad';
