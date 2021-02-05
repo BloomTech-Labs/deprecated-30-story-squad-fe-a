@@ -12,6 +12,15 @@ import {
   ReadOutlined,
   CalendarOutlined,
 } from '@ant-design/icons';
+import {
+  Planet,
+  Backpack,
+  Cat,
+  Chocolate,
+  Ghost,
+  IceCream,
+  Mug,
+} from 'react-kawaii';
 
 const gridStyle = {
   width: '25%',
@@ -120,15 +129,28 @@ const RenderTrophyRoom = props => {
         <TabPane tab="Stickers" key="3">
           <Divider />
           <Card>
-            <Card.Grid style={gridStyle}>Content</Card.Grid>
-            <Card.Grid hoverable={true} style={gridStyle}>
-              Content
+            <Card.Grid style={gridStyle}>
+              <Planet size={200} mood="blissful" color="#83D1FB" />;
             </Card.Grid>
-            <Card.Grid style={gridStyle}>Content</Card.Grid>
-            <Card.Grid style={gridStyle}>Content</Card.Grid>
-            <Card.Grid style={gridStyle}>Content</Card.Grid>
-            <Card.Grid style={gridStyle}>Content</Card.Grid>
-            <Card.Grid style={gridStyle}>Content</Card.Grid>
+            <Card.Grid hoverable={true} style={gridStyle}>
+              <Backpack size={320} mood="excited" color="#FFD882" />
+            </Card.Grid>
+            <Card.Grid style={gridStyle}>
+              <Cat size={320} mood="excited" color="#596881" />
+            </Card.Grid>
+            <Card.Grid style={gridStyle}>
+              <Chocolate size={320} mood="blissful" color="#fc105c" />
+            </Card.Grid>
+            <Card.Grid style={gridStyle}>
+              <Ghost size={240} mood="blissful" color="#E0E4E8" />
+            </Card.Grid>
+            <Card.Grid style={gridStyle}>
+              <IceCream size={270} mood="blissful" color="#FDA7DC" />
+            </Card.Grid>
+            <Card.Grid style={gridStyle}>
+              <Planet size={230} mood="happy" color="#596881" />
+            </Card.Grid>
+            {/* <Card.Grid style={gridStyle}><Mug size={310} mood="blissful" color="#596881" /></Card.Grid> */}
           </Card>
           ,
         </TabPane>
