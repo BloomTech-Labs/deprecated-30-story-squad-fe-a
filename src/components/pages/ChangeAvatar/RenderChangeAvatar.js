@@ -6,6 +6,7 @@ const RenderChangeAvatar = props => {
   return (
     <>
       <Header displayMenu={true} title="Change your avatar" />
+
       <div className="avatar-container"></div>
     </>
   );
