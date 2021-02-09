@@ -30,6 +30,9 @@ const RenderChildDashboard = props => {
   const handleChangeAvatar = e => {
     push('/child/changeavatar');
   };
+  const handleAdventurePassport = e => {
+    push('/adventurepassport');
+  };
 
   const handleModerationPage = event => {
     push('/moderation');
@@ -73,7 +76,7 @@ const RenderChildDashboard = props => {
               className="child-dash-img"
               src={adventure_passport}
               alt="Adventure Passport Button"
-              onClick={handleJoinSquad}
+              onClick={handleAdventurePassport}
             />
           </Col>
           <Col className="trophy-room" xs={24} sm={13}>
