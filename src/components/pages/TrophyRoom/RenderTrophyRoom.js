@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Header from '../../common/Header';
 import { connect } from 'react-redux';
-import { Tabs, Row, Col, Divider, Table, Card, Button } from 'antd';
+import { Tabs, Row, Col, Divider, Table, Card, Button, PageHeader } from 'antd';
 import {
   CompassTwoTone,
   SmileOutlined,
@@ -61,6 +61,8 @@ const RenderTrophyRoom = props => {
       >
         <TabPane tab="Badges" key="1" style={{ margin: '0 auto' }}>
           <Divider orientation="center"></Divider>
+          <PageHeader className="badgesH" title="ACHIVEMENTS" />
+
           <Row justify="space-around">
             <Col span={4}>
               <Button type="ghost" icon={<CompassTwoTone />}>
@@ -79,8 +81,8 @@ const RenderTrophyRoom = props => {
             </Col>
             <Col span={4}>
               <Button type="ghost" icon={<CalendarOutlined />}>
-                0 Losses This Month{' '}
-              </Button>{' '}
+                0 Losses This Month
+              </Button>
             </Col>
           </Row>
           <Divider />
@@ -89,7 +91,7 @@ const RenderTrophyRoom = props => {
             <Col span={4}>
               <Button type="ghost" icon={<CrownTwoTone />}>
                 LeaderBoard Top Ten
-              </Button>{' '}
+              </Button>
             </Col>
             <Col span={4}>
               <Button type="ghost" icon={<TeamOutlined />}>
@@ -115,7 +117,6 @@ const RenderTrophyRoom = props => {
             columns={fixedColumns}
             dataSource={fixedData}
             pagination={false}
-            scroll={{ x: 2000 }}
             bordered
             summary={() => (
               <Table.Summary.Row>
