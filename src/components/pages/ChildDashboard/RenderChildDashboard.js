@@ -8,7 +8,6 @@ import { modalInstructions } from '../../../utils/helpers';
 import adventure_passport from '../../../assets/images/child_dashboard_images/adventure_passport.svg';
 import change_your_avatar from '../../../assets/images/child_dashboard_images/change_your_avatar.svg';
 import trophy_room from '../../../assets/images/child_dashboard_images/trophy_room.svg';
-import { PointShare } from '../PointShare';
 
 const RenderChildDashboard = props => {
   const { push } = useHistory();
@@ -25,12 +24,18 @@ const RenderChildDashboard = props => {
   const handleFaceoffs = e => {
     push('/child/match-up');
   };
-
-  const handleModerationPage = event => {
-    push('/moderation');
+  const handleTrophyRoom = e => {
+    push('/child/trophyroom');
+  };
+  const handleChangeAvatar = e => {
+    push('/child/changeavatar');
   };
   const handleAdventurePassport = e => {
     push('/adventurepassport');
+  };
+
+  const handleModerationPage = event => {
+    push('/moderation');
   };
 
   return (
@@ -61,7 +66,7 @@ const RenderChildDashboard = props => {
               className="child-dash-img"
               src={change_your_avatar}
               alt="Change Your Avatar Button"
-              onClick={handleModerationPage}
+              onClick={handleChangeAvatar}
             />
           </Col>
         </Row>
@@ -79,7 +84,7 @@ const RenderChildDashboard = props => {
               className="child-dash-img"
               src={trophy_room}
               alt="Trophy Room Button"
-              onClick={handleFaceoffs}
+              onClick={handleTrophyRoom}
             />
           </Col>
         </Row>
