@@ -24,6 +24,15 @@ const RenderChildDashboard = props => {
   const handleFaceoffs = e => {
     push('/child/match-up');
   };
+  const handleTrophyRoom = e => {
+    push('/child/trophyroom');
+  };
+  const handleChangeAvatar = e => {
+    push('/child/changeavatar');
+  };
+  const handleAdventurePassport = e => {
+    push('/adventurepassport');
+  };
 
   const handleModerationPage = event => {
     push('/moderation');
@@ -57,7 +66,7 @@ const RenderChildDashboard = props => {
               className="child-dash-img"
               src={change_your_avatar}
               alt="Change Your Avatar Button"
-              onClick={handleModerationPage}
+              onClick={handleChangeAvatar}
             />
           </Col>
         </Row>
@@ -67,7 +76,7 @@ const RenderChildDashboard = props => {
               className="child-dash-img"
               src={adventure_passport}
               alt="Adventure Passport Button"
-              onClick={handleJoinSquad}
+              onClick={handleAdventurePassport}
             />
           </Col>
           <Col className="trophy-room" xs={24} sm={13}>
@@ -75,7 +84,7 @@ const RenderChildDashboard = props => {
               className="child-dash-img"
               src={trophy_room}
               alt="Trophy Room Button"
-              onClick={handleFaceoffs}
+              onClick={handleTrophyRoom}
             />
           </Col>
         </Row>
