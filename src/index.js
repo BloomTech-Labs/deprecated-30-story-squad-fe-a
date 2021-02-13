@@ -39,7 +39,9 @@ import { ParentSettings } from './components/pages/FamilySettings';
 import { StoryPrompt } from './components/pages/StoryPrompt';
 import { WritingSub } from './components/pages/WritingSub';
 import LoginCallbackLoader from './components/common/LoginCallbackLoader';
+import { TrophyRoom } from './components/pages/TrophyRoom';
 import { ChangeAvatar } from './components/pages/ChangeAvatar';
+import { AdventurePassport } from './components/pages/AdventurePassport';
 
 // Gameification Components
 import { JoinTheSquad } from './components/pages/JoinTheSquad';
@@ -49,7 +51,6 @@ import { VotingPage } from './components/pages/VotingPage';
 
 // Note: for demo purposes ONLY
 import ModerationTest from './components/pages/ModerationTest/ModerationTest';
-//import { ChangeAvatar } from './components/pages/ChangeAvatar';
 
 ReactDOM.render(
   //
@@ -169,12 +170,27 @@ function App() {
           )}
         />
         <SecureRoute
+          path="/child/trophyroom"
+          exact
+          component={() => (
+            <TrophyRoom LoadingComponent={ChildLoadingComponent} />
+          )}
+        />
+        <SecureRoute
           path="/child/changeavatar"
           exact
           component={() => (
             <ChangeAvatar LoadingComponent={ChildLoadingComponent} />
           )}
         />
+        <SecureRoute
+          path="/child/adventurepassport"
+          exact
+          component={() => (
+            <AdventurePassport LoadingComponent={ChildLoadingComponent} />
+          )}
+        />
+
         <Route exact path="/moderation" component={ModerationTest} />
         <Route component={NotFoundPage} />
       </Switch>
