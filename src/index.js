@@ -40,6 +40,8 @@ import { StoryPrompt } from './components/pages/StoryPrompt';
 import { WritingSub } from './components/pages/WritingSub';
 import LoginCallbackLoader from './components/common/LoginCallbackLoader';
 import { TrophyRoom } from './components/pages/TrophyRoom';
+import { ChangeAvatar } from './components/pages/ChangeAvatar';
+import { AdventurePassport } from './components/pages/AdventurePassport';
 
 // Gameification Components
 import { JoinTheSquad } from './components/pages/JoinTheSquad';
@@ -174,6 +176,21 @@ function App() {
             <TrophyRoom LoadingComponent={ChildLoadingComponent} />
           )}
         />
+        <SecureRoute
+          path="/child/changeavatar"
+          exact
+          component={() => (
+            <ChangeAvatar LoadingComponent={ChildLoadingComponent} />
+          )}
+        />
+        <SecureRoute
+          path="/child/adventurepassport"
+          exact
+          component={() => (
+            <AdventurePassport LoadingComponent={ChildLoadingComponent} />
+          )}
+        />
+
         <Route exact path="/moderation" component={ModerationTest} />
         <Route component={NotFoundPage} />
       </Switch>
